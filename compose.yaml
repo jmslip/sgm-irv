@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest # Ou uma versão específica como mysql:8.0
+    container_name: sgm-mysql
+    restart: always # Reinicia o contêiner se ele parar
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_DATABASE: sgm-irv
+      MYSQL_USER: sgm_user
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - sgm-mysql-data:/var/lib/mysql
+
+volumes:
+  sgm-mysql-data:
