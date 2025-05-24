@@ -1,7 +1,7 @@
 package br.com.koinoniatab.usermanagement.internal.service;
 
-import br.com.koinoniatab.usermanagement.api.dto.UserCreateDTO;
 import br.com.koinoniatab.usermanagement.api.service.UserService;
+import br.com.koinoniatab.usermanagement.internal.dto.UserAuthDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserCreateDTO user = userService.findUserByEmail(username)
+        UserAuthDTO user = userService.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o e-mail: " + username));
 
         Collection<? extends GrantedAuthority> authorities = getAuthorities(user.roleNames());
