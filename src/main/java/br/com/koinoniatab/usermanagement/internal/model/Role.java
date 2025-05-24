@@ -7,12 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "app_role")
 public class Role {
@@ -23,6 +25,10 @@ public class Role {
 
     @Column(nullable = false, unique = true, length = 50)
     private String name;
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {
