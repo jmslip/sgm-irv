@@ -23,7 +23,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "app_user")
-public class UserEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,9 +58,9 @@ public class UserEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserEntity userEntity = (UserEntity) o;
+        User user = (User) o;
 
-        return new EqualsBuilder().append(id, userEntity.id).isEquals();
+        return new EqualsBuilder().append(id, user.id).isEquals();
     }
 
     @Override

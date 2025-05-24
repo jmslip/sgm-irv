@@ -1,7 +1,7 @@
 package br.com.koinoniatab.core.startup;
 
 import br.com.koinoniatab.usermanagement.internal.model.Role;
-import br.com.koinoniatab.usermanagement.internal.model.UserEntity;
+import br.com.koinoniatab.usermanagement.internal.model.User;
 import br.com.koinoniatab.usermanagement.internal.repository.RoleRepository;
 import br.com.koinoniatab.usermanagement.internal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -64,7 +64,7 @@ public class DataInitializer implements CommandLineRunner {
     private void createUserIfNotExists(String name, String email, String rawPassword, LocalDate birthDate, Set<Role> roles) {
         if (!userRepository.existsByEmail(email)) {
             log.info("Criando usuário: {}", email);
-            UserEntity user = new UserEntity();
+            User user = new User();
             user.setName(name);
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(rawPassword));

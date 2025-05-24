@@ -1,6 +1,6 @@
 package br.com.koinoniatab.notifications.internal.model;
 
-import br.com.koinoniatab.usermanagement.internal.model.UserEntity;
+import br.com.koinoniatab.usermanagement.internal.model.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,14 +12,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "birthday_notification_recipient",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id"}))
@@ -31,15 +29,10 @@ public class BirthdayNotificationRecipient {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity userEntity;
+    private User user;
 
     @Column(nullable = false)
     private boolean active = true;
-
-    public BirthdayNotificationRecipient(UserEntity userEntity) {
-        this.userEntity = userEntity;
-        this.active = true;
-    }
 
     @Override
     public boolean equals(Object o) {
