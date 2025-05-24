@@ -29,7 +29,8 @@ CREATE TABLE member (
                         name VARCHAR(150) NOT NULL,
                         birth_date DATE NOT NULL,
                         address VARCHAR(255) NULL,
-                        whatsapp_contact VARCHAR(20) NULL,
+                        phone_number VARCHAR(20) NULL,
+                        whatsapp BOOLEAN NOT NULL DEFAULT FALSE,
                         email VARCHAR(100) NULL,
                         baptism_date DATE NULL,
                         ministry VARCHAR(200) NULL
@@ -42,3 +43,16 @@ CREATE TABLE birthday_notification_recipient (
                                                  active BOOLEAN NOT NULL DEFAULT TRUE,
                                                  FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
 );
+
+-- Tabela para Publicação de Eventos (Spring Modulith)
+CREATE TABLE event_publication (
+                                   id BINARY(16) NOT NULL PRIMARY KEY,
+                                   listener_id VARCHAR(255) NOT NULL,
+                                   event_type VARCHAR(500) NOT NULL,
+                                   serialized_event TEXT NOT NULL,
+                                   publication_date DATETIME(6) NOT NULL,
+                                   completion_date DATETIME(6) NULL
+);
+
+-- Índice para otimizar consultas
+CREATE INDEX idx_event_publication_incomplete ON event_publication (listener_id, completion_date);

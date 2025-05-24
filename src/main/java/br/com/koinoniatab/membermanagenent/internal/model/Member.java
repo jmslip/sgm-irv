@@ -34,6 +34,9 @@ public class Member {
     @Column(name = "phone_number", length = 20)
     private String whatsAppContact;
 
+    @Column(nullable = false)
+    private boolean whatsapp = false;
+
     @Column(length = 100)
     private String email;
 
