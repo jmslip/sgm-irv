@@ -29,10 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         Collection<? extends GrantedAuthority> authorities = getAuthorities(userEntity.getRoles());
 
-        boolean active = userEntity.getActive() != null && userEntity.getActive();
         return new User(userEntity.getEmail(),
                 userEntity.getPassword(),
-                active,
+                userEntity.isActive(),
                 true,
                 true,
                 true,

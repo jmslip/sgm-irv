@@ -41,7 +41,8 @@ public class UserEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    private Boolean active;
+    @Column(nullable = false)
+    private boolean active = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

@@ -1,6 +1,25 @@
 spring:
   application:
     name: sgm-irv
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate.hibernate.dialect: org.hibernate.dialect.MySQLDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/sgm_irv?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: sgm-irv
+    password: abc123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+server:
+  port: 8080
+
 remember:
   key: ${REMEMBER_KEY:0b4fdb7c-9687-4a6d-9f23-bdcb762ba79b}
   token-validity-seconds: 604800
