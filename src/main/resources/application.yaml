@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sgm-irv
+remember:
+  key: ${REMEMBER_KEY:0b4fdb7c-9687-4a6d-9f23-bdcb762ba79b}
+  token-validity-seconds: 604800

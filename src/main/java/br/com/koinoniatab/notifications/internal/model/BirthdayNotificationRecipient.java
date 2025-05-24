@@ -1,6 +1,6 @@
 package br.com.koinoniatab.notifications.internal.model;
 
-import br.com.koinoniatab.usermanagement.internal.model.User;
+import br.com.koinoniatab.usermanagement.internal.model.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,13 +31,13 @@ public class BirthdayNotificationRecipient {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity userEntity;
 
     @Column(nullable = false)
     private boolean active = true;
 
-    public BirthdayNotificationRecipient(User user) {
-        this.user = user;
+    public BirthdayNotificationRecipient(UserEntity userEntity) {
+        this.userEntity = userEntity;
         this.active = true;
     }
 

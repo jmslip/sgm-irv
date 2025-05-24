@@ -2,7 +2,7 @@ package br.com.koinoniatab.usermanagement.internal.service;
 
 import br.com.koinoniatab.usermanagement.api.service.UserService;
 import br.com.koinoniatab.usermanagement.internal.model.Role;
-import br.com.koinoniatab.usermanagement.internal.model.User;
+import br.com.koinoniatab.usermanagement.internal.model.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,27 +11,27 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     @Override
-    public User createUser(User user, List<Role> roleNames) {
+    public UserEntity createUser(UserEntity userEntity, List<Role> roleNames) {
         return null;
     }
 
     @Override
-    public Optional<User> findUserByEmail(String email) {
+    public Optional<UserEntity> findUserByEmail(String email) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> findUserById(Long id) {
+    public Optional<UserEntity> findUserById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public Page<User> findAllUsers(Pageable pageable) {
+    public Page<UserEntity> findAllUsers(Pageable pageable) {
         return null;
     }
 
     @Override
-    public User updateUser(Long id, User user) {
+    public UserEntity updateUser(Long id, UserEntity userEntity) {
         return null;
     }
 

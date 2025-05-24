@@ -23,7 +23,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "app_user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,8 @@ public class User {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    private Boolean active;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "app_user_roles",
@@ -55,9 +57,9 @@ public class User {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserEntity userEntity = (UserEntity) o;
 
-        return new EqualsBuilder().append(id, user.id).isEquals();
+        return new EqualsBuilder().append(id, userEntity.id).isEquals();
     }
 
     @Override
