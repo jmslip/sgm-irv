@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponseDTO createUser(UserCreateDTO newUser, List<Role> roleNames) {
+    public UserResponseDTO createUser(UserCreateDTO newUser) {
         validateUserToCreate(newUser);
 
         User savedUser = registerNewUser(newUser);

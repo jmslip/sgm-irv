@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Usuário</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+    <style>
+        body { padding-top: 20px; }
+        .container { max-width: 600px; }
+        .error-message { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${userCreateDTO.name == null ? 'Novo Usuário' : 'Editar Usuário'}">Novo Usuário</h1>
+
+    <form th:action="@{/admin/users/save}" th:object="${userCreateDTO}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome:</label>
+            <input type="text" th:field="*{name}" id="name" class="form-control"
+                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''" />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback error-message"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" th:field="*{email}" id="email" class="form-control"
+                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''" />
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback error-message"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha:</label>
+            <input type="password" th:field="*{password}" id="password" class="form-control"
+                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''" />
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback error-message"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Data de Nascimento:</label>
+            <input type="date" th:field="*{birthDate}" id="birthDate" class="form-control"
+                   th:classappend="${#fields.hasErrors('birthDate')} ? 'is-invalid' : ''" />
+            <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="invalid-feedback error-message"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Papéis:</label>
+            <div th:each="role : ${allRoles}" class="form-check">
+                <input type="checkbox" th:field="*{roleNames}" th:value="${role.name()}" class="form-check-input"
+                       th:id="${'role-' + role.id()}">
+                <label th:for="${'role-' + role.id()}" class="form-check-label" th:text="${role.name()}"></label>
+            </div>
+            <div th:if="${#fields.hasErrors('roleNames')}" th:errors="*{roleNames}" class="error-message"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a th:href="@{/admin/users}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
